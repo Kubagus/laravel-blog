@@ -61,7 +61,16 @@
         <script src="{{ '/js/dataTables.bootstrap5.js' }}"></script>
 
         <script>
-            new DataTable('#dataTable');
+            // new DataTable('#dataTable');
+        </script>
+        <script>
+            $(document).ready(function(){
+                new DataTable('#dataTable');
+                 $('dataTable').DataTable({
+                
+                });
+            });
+           
         </script>
     @endpush
     
