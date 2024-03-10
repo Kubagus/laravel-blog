@@ -4,7 +4,7 @@
         {{-- <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css"> --}}
         <link rel="stylesheet" href="{{ '/css/dataTablesbootstrap5.css' }}">
     @endpush
-@section('title', 'Daftar Artikel')
+@section('title', 'List Artikel')
 @section('content')
     
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
@@ -13,7 +13,7 @@
         </div>
         @include('back.layout.notif')
         <div class="mt-3">
-            <button class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#modalCreate">Create</button>
+            <a href="{{ '/article/create' }}" class="btn btn-primary mb-2">Create</a>
             <table class="table table-stripped table-bordered" id="dataTable">
                 <thead>
                     <tr>
@@ -36,7 +36,7 @@
                             @if ($article->status == 0)
                                 <td><span class="badge bg-danger">Private</span></td>
                             @else
-                                <td><span class="badge bg-Success">Published</span></td>
+                                <td><span class="badge bg-success">Published</span></td>
                             @endif
                             <td>{{ $article->publish_date }}</td>
                             <td>
