@@ -41,7 +41,7 @@
                             <td>{{ $article->publish_date }}</td>
                             <td>
                                 <a href="{{ '/article/' . $article->id }}" class="btn btn-info btn-sm">Detail</a>
-                                <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{{ '/article/' . $article->id . '/edit' }}" class="btn btn-warning btn-sm">Edit</a>
                                 <a href="" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                        </tr>

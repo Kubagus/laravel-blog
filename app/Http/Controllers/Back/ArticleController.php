@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\UpdateArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -65,15 +67,34 @@ class ArticleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+         return view('back.article.update',[
+            'article' => Article::find($id),
+            'categories' => Category::get()
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateArticleRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $fileName = uniqId() . '.'. $file->getClientOriginalExtension();
+            $file->storeAs('public/back/' . $fileName);
+
+            // delete old image
+            Storage::delete(['public/back/' . $request->oldImg]);
+            $data['img'] = $fileName; 
+        } else {
+            $data['img'] = $request->oldImg;
+        }
+        
+        $data['slug'] = Str::slug($data['title']);
+        Article::find($id)->update($data);
+        return redirect('/article')->with('success', 'Artikel berhasil diubah.');
     }
 
     /**
