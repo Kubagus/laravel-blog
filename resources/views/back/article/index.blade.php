@@ -14,7 +14,7 @@
         @include('back.layout.notif')
         <div class="mt-3">
             <a href="{{ '/article/create' }}" class="btn btn-primary mb-2">Create</a>
-            <table class="table table-stripped table-bordered" id="dataTable">
+            <table class="table table-striped table-bordered" id="dataTable">
                 <thead>
                     <tr>
                         <th>No</th>
@@ -40,7 +40,7 @@
                             @endif
                             <td>{{ $article->publish_date }}</td>
                             <td>
-                                <a href="" class="btn btn-info btn-sm">Detail</a>
+                                <a href="{{ '/article/' . $article->id }}" class="btn btn-info btn-sm">Detail</a>
                                 <a href="" class="btn btn-warning btn-sm">Edit</a>
                                 <a href="" class="btn btn-danger btn-sm">Delete</a>
                             </td>

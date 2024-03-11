@@ -55,7 +55,9 @@ class ArticleController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return view('back.article.show', [
+            'article' => Article::find($id)
+        ]);
     }
 
     /**
