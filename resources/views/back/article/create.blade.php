@@ -37,7 +37,7 @@
 
                 <div class="mb-3">
                     <label for="desc">Description</label>
-                    <textarea name="desc" id="desc" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="desc" id="desc" cols="30" rows="10" class="form-control">{{ old('desc') }}</textarea>
                 </div>
 
                 <div class="mb-3">

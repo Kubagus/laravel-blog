@@ -41,5 +41,22 @@
         @include('back.category.update-modal')
         @include('back.category.delete-modal')
     </main>
+
+    @push('js')
+        <script src="{{ '/js/sweetalert.js' }}"></script>
+        <script>
+                const swal = $('.swal').data('swal');
+                if (swal) {
+                    Swal.fire({
+                        'title': 'success',
+                        'text': swal,
+                        'icon': 'success',
+                        'showConfirmButton' : false,
+                        'timer' : 2000
+                    });
+                }
+        </script>  
+    @endpush
+    
     
 @endsection

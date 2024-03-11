@@ -102,6 +102,11 @@ class ArticleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Article::find($id);
+        Storage::delete(['public/back/' . $data->img]);
+        $data->delete();
+        return back()->with('success', 'Artikel telah dihapus');
+
+
     }
 }

@@ -12,6 +12,8 @@
             <h1 class="h2">Articles</h1>
         </div>
         @include('back.layout.notif')
+        {{-- <div class="swal" data-swal="{{ session('success') }}"></div> --}}
+
         <div class="mt-3">
             <a href="{{ '/article/create' }}" class="btn btn-primary mb-2">Create</a>
             <table class="table table-striped table-bordered" id="dataTable">
@@ -42,23 +44,42 @@
                             <td>
                                 <a href="{{ '/article/' . $article->id }}" class="btn btn-info btn-sm">Detail</a>
                                 <a href="{{ '/article/' . $article->id . '/edit' }}" class="btn btn-warning btn-sm">Edit</a>
-                                <a href="" class="btn btn-danger btn-sm">Delete</a>
+                                 <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalDelete{{ $article->id }}">Delete</button>
                             </td>
                        </tr>
                    @endforeach
                 </tbody>
             </table>
         </div>
+        @include('back.article.delete-modal')
     </main>
 
     @push('js')
-        {{-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> --}}
-        <script src="{{ '/js/jquery.js' }}"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.7.1.js"></script> --}}
+    <script src="{{ '/js/jquery.js' }}"></script>
+    <script src="{{ '/js/sweetalert.js' }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
         {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> --}}
         <script src="{{ '/js/bootstrapa.bundle.min.js' }}"></script>
         {{-- <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script> --}}
         <script src="{{ '/js/dataTables.js' }}"></script>
         <script src="{{ '/js/dataTables.bootstrap5.js' }}"></script>
+        
+
+        {{-- alert success --}}
+        <script>
+            const swal = $('.swal').data('swal');
+            if (swal) {
+                Swal.fire({
+                    'title': 'success',
+                    'text': swal,
+                    'icon': 'success',
+                    'showConfirmButton' : false,
+                    'timer' : 2000
+                });
+            }
+
+        </script>
 
         <script>
             // new DataTable('#dataTable');
